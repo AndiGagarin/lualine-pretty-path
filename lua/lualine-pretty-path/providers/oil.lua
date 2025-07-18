@@ -1,4 +1,3 @@
-local utils = require("lualine-pretty-path.utils")
 ---@class PrettyPath.OilProvider: PrettyPath.Provider
 ---@field super PrettyPath.Provider
 local M = require("lualine-pretty-path.providers.base"):extend()
@@ -23,7 +22,6 @@ end
 
 function M:render()
     return table.concat({
-        self:extract_scheme() or "",
         self:render_dir() or "",
         self:render_symbols() or "",
     }, "")
