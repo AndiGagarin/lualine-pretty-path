@@ -9,7 +9,7 @@ end
 ---Renders the oil current directory as if it was the "filename" part.
 ---@return string
 function M:render_dir()
-    local dir = require("oil").get_current_dir() or ""
+    local dir = vim.api.nvim_buf_get_name(0)
     dir = dir:sub(1, #dir - #self.path_sep) -- remove trailing separator
 
     local hl = self.opts.highlights.filename
