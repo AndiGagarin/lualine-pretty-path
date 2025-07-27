@@ -82,16 +82,16 @@ local default_options = {
     providers = {},
 }
 
-local default_provider = require("lualine-pretty-path.providers.base")
-local builtin_providers = {
-    require("lualine-pretty-path.providers.fugitive"),
-    require("lualine-pretty-path.providers.toggleterm"),
-    require("lualine-pretty-path.providers.terminal"),
-    require("lualine-pretty-path.providers.checkhealth"),
-    require("lualine-pretty-path.providers.oil"),
-    require("lualine-pretty-path.providers.trouble"),
-    require("lualine-pretty-path.providers.dapui"),
-}
+-- local default_provider = require("lualine-pretty-path.providers.base")
+-- local builtin_providers = {
+--     require("lualine-pretty-path.providers.fugitive"),
+--     require("lualine-pretty-path.providers.toggleterm"),
+--     require("lualine-pretty-path.providers.terminal"),
+--     require("lualine-pretty-path.providers.checkhealth"),
+--     require("lualine-pretty-path.providers.oil"),
+--     require("lualine-pretty-path.providers.trouble"),
+--     require("lualine-pretty-path.providers.dapui"),
+-- }
 
 function M:init(options)
     M.super.init(self, options)
@@ -112,7 +112,7 @@ function M:init(options)
     end
 
     self.options.providers = utils.resolve_providers(self.options.providers)
-    self._default_provider = self.options.providers.default or default_provider
+    self._default_provider = self.options.providers.default
 
     -- create highlight groups
     for key, hl in pairs(self.options.highlights) do
@@ -127,7 +127,7 @@ end
 ---@param path string
 ---@return PrettyPath.Provider
 function M:get_provider(path)
-    for _, list in ipairs({ self.options.providers, builtin_providers }) do
+    for _, list in ipairs({ self.options.providers }) do
         for _, item in ipairs(list) do
             if item and item.can_handle(path) then
                 return item
