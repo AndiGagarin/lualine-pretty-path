@@ -19,7 +19,7 @@ function M:render_dir()
 end
 
 function M:get_icon()
-    return { utils.get_icon("terminal") }
+    return { "⚡", self.opts.highlights.filename }
 end
 
 function M:render()
